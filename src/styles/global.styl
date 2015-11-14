@@ -1,0 +1,204 @@
+// CSS RESET (stylus)
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video
+	margin 0
+	padding 0
+	border 0
+	outline 0
+	font-size 100%
+	vertical-align baseline
+	background transparent
+
+body
+	line-height 1
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+	display block
+
+nav ul
+	list-style none
+
+blockquote, q
+	quotes none
+
+blockquote:before, blockquote:after, q:before, q:after
+	content ''
+	content none
+
+a
+	margin 0
+	padding 0
+	font-size 100%
+	vertical-align baseline
+	background transparent
+
+ins
+	background-color #ff9
+	color #000
+	text-decoration none
+
+mark
+	background-color #ff9
+	color #000
+	font-style italic
+	font-weight bold
+
+del
+	text-decoration  line-through
+
+abbr[title], dfn[title]
+	border-bottom 1px dotted
+	cursor help
+
+table
+	border-collapse collapse
+	border-spacing 0
+
+hr
+	display block
+	height 1px
+	border 0   
+	border-top 1px solid #cccccc
+	margin 1em 0
+	padding 0
+
+input, select
+	vertical-align middle
+	
+// CLEAR
+span.clear
+	clear both
+	display block	
+
+// COLORS
+primaryColor = rgb(42,90,224)
+secondaryColor = rgb(60,196,164)
+accentColor = rgb(191,251,55)
+grayColor = rgb(90,90,90)
+
+// FONTS
+html, body
+	height 100%
+	min-width 350px
+	min-height 350px
+	font-family _Lato, "helvetica neue", "helvetica", arial, monospace
+body *
+	font-family inherit
+	font-weight 100
+
+@font-face
+	font-family '_Lato'
+	font-style normal
+	font-weight 100
+	src url(../fonts/Lato-Light.ttf)
+@font-face
+	font-family '_Lato'
+	font-style italic
+	font-weight 100
+	src url(../fonts/Lato-LightItalic.ttf)
+@font-face
+	font-family '_Lato'
+	font-style normal
+	font-weight 400
+	src url(../fonts/Lato-Regular.ttf)
+
+	
+// Events Tables
+section.events
+	// height 5000px
+	width 100%
+	background-color white
+	position relative
+	padding 75px 0 100px
+	
+	h2
+		font-size 30px
+		color grayColor
+		// text-align center
+		// border-bottom 2px solid secondaryColor
+		display block
+		// max-width 400px
+		margin 0 auto 20px
+		width 90%
+		max-width 1200px
+		padding 0
+	
+	div#events-table-cont
+		div.table-cont
+			// min-height 100px
+			width 90%
+			max-width 1200px
+			margin 0 auto
+			// background-color grayColor	
+			border-radius 2px
+			border 1px solid rgb(200,200,200)
+			position relative
+			background-color white
+			padding 5px
+			&:hover
+				background-color rgb(230,230,230)
+			@media screen and (max-width: 800px)
+				padding 5px 2px
+				width 95%
+			table.event-table
+				height 100%
+				width 100%
+				margin 0 auto
+				position relative
+				tr
+					td
+						// outline 1px solid red
+						vertical-align top
+						padding 10px
+						font-size 20px
+						&.event-name
+							width 40%
+							font-size 22px
+							font-weight 400
+						&.event-place
+							width 40%
+						&.event-time
+							width 20%
+						&.event-description
+							font-size 17px
+							font-style italic
+							color rgb(120,120,120)
+							vertical-align bottom
+							padding 10px
+						@media screen and (max-width: 800px)
+							padding 8px 5px
+							font-size 15px
+							&.event-name
+								width 30%
+								font-size 18px
+								font-weight 400
+							&.event-place
+								width 45%
+							&.event-time
+								width 25%
+							&.event-description
+								font-size 14px
+								font-style italic
+								color rgb(120,120,120)
+
+// Footer				
+footer
+	background-color grayColor
+	height 60px
+	width 100%
+	line-height 60px
+	color lighten(grayColor, 50%)
+	padding 10px 0
+	text-indent 20px
+	font-size 15px
+	position relative
+	img.logo
+		height 60%
+		position absolute
+		top 20%
+		left 50%
+		transform translateX(-50%)
+		@media screen and (max-width: 800px)
+			right 2%
+			left auto
+			transform none
+

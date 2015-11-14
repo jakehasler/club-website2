@@ -95,12 +95,49 @@ newEventForm.listen('submit', function(evt) {
 	evt.preventDefault();
 	let error = false;
 
+	const dateFormat = 'mm/dd/yyyy';
+
 	inputFields.forEach(function(field) {
 		if (field.value.trim().length <= 0) {
 			field.classList.add('error');
 			error = true;
 		}
+
+		if (field.getAttribute('name') === 'date') {
+			const dateValue = field.value;
+			const dateValueArr = dateValue.split('/');
+			console.log('arr', dateValueArr);
+			if (dateValueArr.length < 3) {
+				error = true;
+				field.classList.add('error');
+				alert('1 date format is: ' + dateFormat);
+				return;
+			}
+			// month
+			if (dateValueArr[0].length !== 2) {
+				error = true;
+				field.classList.add('error');
+				alert('2 date format is: ' + dateFormat);
+				return;
+			}
+			// day
+			if (dateValueArr[1].length !== 2) {
+				error = true;
+				field.classList.add('error');
+				alert('3 date format is: ' + dateFormat);
+				return;
+			}
+			// year
+			if (parseInt(dateValueArr[2]).toString().length !== 4) {
+				error = true;
+				field.classList.add('error');
+				alert('4 date format is: ' + dateFormat);
+				return;
+			}
+		}
 	});
+
+
 
 	if (!error) {
 		const newEvent = createNewEvent();

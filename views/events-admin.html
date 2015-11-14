@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BYU Developers Club</title>
+		<link rel='stylesheet' href='styles/main.css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<section id="events" class="events">
+			<h2>Upcoming Events</h2>
+			<div id="events-table-cont"></div>
+		</section>
+
+		<form id="new-event-form">
+			<h2>New Event</h2>
+			<input name="name" kb class="input-field" placeholder="Name" required>
+			<input name="place" kb class="input-field" placeholder="Place" required>
+			<input name="date" kb class="input-field" placeholder="Date" type="date" required>
+			<input name="time" kb class="input-field" placeholder="Time" required>
+			<input name="description" kb class="input-field" placeholder="Description" required>
+			<button type="submit">Submit</button>
+			<span class="clear"></span>
+		</form>
+
+		<script src="scripts/global.js"></script>
+		<script src="scripts/events-admin.js"></script>
+	</body>
+</html>

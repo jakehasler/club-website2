@@ -1,0 +1,47 @@
+{
+  "name": "club-website",
+  "version": "1.0.0",
+  "description": "### It would be wise to install required global and local modules: ``` npm i -g stylus babel uglify-js eslint nodemon && npm i ```",
+  "main": "index.js",
+  "dependencies": {
+    "co-fs": "^1.2.0",
+    "koa": "^1.1.2",
+    "koa-bodyparser": "^2.0.1",
+    "koa-gzip": "^0.1.0",
+    "koa-router": "^5.2.3",
+    "koa-static": "^1.5.2"
+  },
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.8.1",
+    "babel-cli": "^6.1.18",
+    "babel-plugin-transform-object-rest-spread": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "eslint": "^1.9.0",
+    "stylus": "^0.52.4",
+    "uglify-js": "^2.6.0"
+  },
+  "scripts": {
+    "prebuild": "npm run -s lint",
+    "build": "npm run build-server ; npm run build-global ; npm run build-home ; npm run build-events-admin",
+    "build-server": "babel src/scripts/server > index.js",
+    "build-global": "babel src/scripts/client/global --presets 'es2015' | uglifyjs -cm > public/scripts/global.js",
+    "build-home": "babel src/scripts/client/home --presets 'es2015' | uglifyjs -cm > public/scripts/home.js",
+    "build-events-admin": "babel src/scripts/client/events-admin --presets 'es2015' | uglifyjs -cm > public/scripts/events-admin.js",
+    "stylus": "stylus -c src/styles/main.styl --watch --use autoprefixer-stylus --out public/styles",
+    "lint": "npm run -s lint-server ; npm run -s lint-home ; npm run -s lint-events-admin",
+    "lint-server": "eslint -c '.eslintrc' src/scripts/server",
+    "lint-home": "eslint -c '.eslintrc' src/scripts/client/home",
+    "lint-events-admin": "eslint -c '.eslintrc' src/scripts/client/events-admin",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byudevelopers/club-website2.git"
+  },
+  "author": "Sam Eaton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/byudevelopers/club-website2/issues"
+  },
+  "homepage": "https://github.com/byudevelopers/club-website2#readme"
+}

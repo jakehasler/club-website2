@@ -81,3 +81,7 @@ function getMonth(date) {
 }
 
 window.addEventListener('load', () => renderEventsTable());
+
+// update year in footer
+dom('currentYear').textContent = (new Date()).getFullYear();
+
