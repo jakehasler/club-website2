@@ -32,7 +32,8 @@
     "lint-server": "eslint -c '.eslintrc' src/scripts/server",
     "lint-home": "eslint -c '.eslintrc' src/scripts/client/home",
     "lint-events-admin": "eslint -c '.eslintrc' src/scripts/client/events-admin",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js || node index.js"
   },
   "repository": {
     "type": "git",
