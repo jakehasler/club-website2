@@ -2,7 +2,7 @@
 
 ### To run locally:
 - install dependencies: `npm install`
-- run it: `nodemon`
+- run it: `npm start`
 
 ### To compile stylus form `src` to `public`:
 - `npm run stylus`
