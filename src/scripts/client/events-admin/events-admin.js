@@ -1,9 +1,76 @@
+const _ = {
+	isArray: obj => typeof obj === 'object' && (Array.isArray && Array.isArray(obj) || obj.constructor === Array || obj instanceof Array),
+
+	// loop array
+	each(list, func) {
+		if (!list || !list.length)
+			return null;
+		for (let i = 0, ii = list.length; i < ii; i++)
+			func(list[i], i);
+	},
+
+	// map array
+	map(list, func) {
+		if (!list || !list.length)
+			return [];
+		const arr = [];
+		for (let i = 0, ii = list.length; i < ii; i++)
+			arr.push(func(list[i]));
+		return arr;
+	},
+
+	// filter array
+	filter(list, func) {
+		if (!list || !list.length)
+			return [];
+		const arr = [];
+		for (let i = 0, ii = list.length; i < ii; i++) {
+			if (func(list[i]))
+				arr.push(list[i]);
+		}
+		return arr;
+	},
+
+	// merge objects
+	merge(...args) {
+		const obj = {};
+		_.each(args, arg => {
+			if (!arg || typeof arg !== 'object') return;
+			
+			_.each(Object.keys(arg), key => {
+				obj[key] = arg[key];
+			});
+		});
+		return obj;
+	},
+
+	toArray(list, ...args) {
+		if (args && args.length) {
+			let arr = [];
+			arr = arr.concat(list);
+			this.each(args, arg => {
+				arr = arr.concat(arg);
+			});
+			return arr;
+		}
+		else if (!list || !list.length)
+			return [list];
+		else if (this.isArray(list))
+			return list;
+		const arr = [];
+		for (let i = 0, ii = list.length; i < ii; i++)
+			arr.push(list[i]);
+		return arr;
+	}
+};
+
 function renderEventsTable() {
 	knucklebone.getJson('/get/events')
 	.success(function(eventsJson) {
+		console.log('json res:', eventsJson);
 		dom('events-table-cont').purge();
 		const frag = document.createDocumentFragment();
-		eventsJson.forEach(function(evt) {
+		_.each(eventsJson, function(evt) {
 			frag.appendChild(createTableItem(evt));
 		});
 		dom('events-table-cont').append(frag);
@@ -97,7 +164,7 @@ newEventForm.listen('submit', function(evt) {
 
 	const dateFormat = 'mm/dd/yyyy';
 
-	inputFields.forEach(function(field) {
+	_.each(inputFields, function(field) {
 		if (field.value.trim().length <= 0) {
 			field.classList.add('error');
 			error = true;
@@ -105,33 +172,37 @@ newEventForm.listen('submit', function(evt) {
 
 		if (field.getAttribute('name') === 'date') {
 			const dateValue = field.value;
-			const dateValueArr = dateValue.split('/');
+			const dateValueArr = new Date(dateValue).toLocaleDateString().replace(/-/g, '/').split('/');
 			console.log('arr', dateValueArr);
 			if (dateValueArr.length < 3) {
 				error = true;
 				field.classList.add('error');
-				alert('1 date format is: ' + dateFormat);
+				alert('(checkpoint 1) date format is: ' + dateFormat);
 				return;
 			}
+
+			console.log('dateValueArr[0]: ', dateValueArr[0]);
+			console.log('dateValueArr[0].length: ', dateValueArr[0].length);
+
 			// month
 			if (dateValueArr[0].length !== 2) {
 				error = true;
 				field.classList.add('error');
-				alert('2 date format is: ' + dateFormat);
+				alert('(checkpoint 2) date format is: ' + dateFormat);
 				return;
 			}
 			// day
 			if (dateValueArr[1].length !== 2) {
 				error = true;
 				field.classList.add('error');
-				alert('3 date format is: ' + dateFormat);
+				alert('(checkpoint 3) date format is: ' + dateFormat);
 				return;
 			}
 			// year
 			if (parseInt(dateValueArr[2]).toString().length !== 4) {
 				error = true;
 				field.classList.add('error');
-				alert('4 date format is: ' + dateFormat);
+				alert('(checkpoint 4) date format is: ' + dateFormat);
 				return;
 			}
 		}
@@ -152,7 +223,7 @@ newEventForm.listen('submit', function(evt) {
 });
 
 // remove all error highlights on focus
-inputFields.forEach(function(field) {
+_.each(inputFields, function(field) {
 	field.addEventListener('focus', function() {
 		this.classList.remove('error');
 	});
