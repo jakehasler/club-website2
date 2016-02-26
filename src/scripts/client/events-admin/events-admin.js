@@ -183,16 +183,16 @@ newEventForm.listen('submit', function(evt) {
 
 			console.log('dateValueArr[0]: ', dateValueArr[0]);
 			console.log('dateValueArr[0].length: ', dateValueArr[0].length);
-
+			console.log('parseInt(dateValueArr[0]): ', parseInt(dateValueArr[0]));
 			// month
-			if (dateValueArr[0].length !== 2) {
+			if (parseInt(dateValueArr[0]) > 12) {
 				error = true;
 				field.classList.add('error');
 				alert('(checkpoint 2) date format is: ' + dateFormat);
 				return;
 			}
 			// day
-			if (dateValueArr[1].length !== 2) {
+			if (parseInt(dateValueArr[1]) > 31) {
 				error = true;
 				field.classList.add('error');
 				alert('(checkpoint 3) date format is: ' + dateFormat);
